@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+	<title>Login</title>
+	<meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width" />
+	<link rel="stylesheet" href="../css/components.css">
+	   <meta name="viewport" content="width=device-width, initial-scale=1">
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+ <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.1.1.min.js"></script>
+ <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+ <style>
+  html
+  {
+    font-size: 100%;
+  }
+ 
+</style>
+<link rel="stylesheet" href="../css/responsee.css">
+<link rel="stylesheet" href="../owl-carousel/owl.carousel.css">
+<link rel="stylesheet" href="../owl-carousel/owl.theme.css">
+<!-- CUSTOM STYLE -->  
+<link rel="stylesheet" href="../css/tem-style.css">
+<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800&amp;subset=latin,latin-ext' rel='stylesheet' type='text/css'>    
+<script type="text/javascript" src="../js/modernizr.js"></script>
+<script type="text/javascript" src="../js/responsee.js"></script> 
+	<link rel="stylesheet" type="text/css" href="../css/log.css">
+	
+	<script src="../dist/sweetalert2.js"></script>
+	<link rel="stylesheet" href="../dist/sweetalert2.css">
+	<script src="../dist/sweetalert2.min.js"></script>
+	<link rel="stylesheet" href="../dist/sweetalert2.min.css">
+	<script src="../js/login.js"></script>
+	<script>
+		$(document).ready(function(){
+			$(document).on("keyup","input[name='ruser']",function(event){
+				$.ajax({
+                        type: "POST",
+                        url: "../php/username.php",
+                        data    : {result: $(this).val()},
+                        success: function(response){
+                        	
+                        	if(response=="false"){
+                        		if($('span#rusername').hasClass('glyphicon-ok'))
+                        			$('span#rusername').removeClass('glyphicon-ok');
+                        		if(!$('span#rusername').hasClass('glyphicon-remove'))
+                        			$('span#rusername').addClass('glyphicon-remove');
+                        		//$(input#user).setCustomValidity('hghj');
+                        		
+                        	}
+                        	else{
+                        		if(!$('span#rusername').hasClass('glyphicon-ok'))
+                        			$('span#rusername').addClass('glyphicon-ok');
+                        		if($('span#rusername').hasClass('glyphicon-remove'))
+                        		  $('span#rusername').removeClass('glyphicon-remove');
+                        	
+                        	}
+                        }
+                    });
+			
+			});
+
+			$(document).on("click","input[name='lsubmit']",function(event){
+				 $.ajax({
+                        type: "POST",
+                        url: "../php/loginProcess.php",
+                        data    : {email: $('#lemail').val(),password: $('#lpassword').val()},
+                        success: function(response){
+                        	if(response=="true"){
+                        		window.location.href="../gallery.php";
+                        		
+                        	}
+                        	else
+                        		swal("Nope", "Incorrect Information", "error");
+                        }
+                    });
+			});
+
+			$(document).on("keyup","input[name='remail']",function(event){
+				$.ajax({
+                        type: "POST",
+                        url: "../php/email.php",
+                        data    : {result: $(this).val()},
+                        success: function(response){
+                        	
+                        	if(response=="false"){
+                        		if($('span#remail').hasClass('glyphicon-ok'))
+                        			$('span#remail').removeClass('glyphicon-ok');
+                        		if(!$('span#remail').hasClass('glyphicon-remove'))
+                        			$('span#remail').addClass('glyphicon-remove');
+                        		//$(input#user).setCustomValidity('hghj');
+                        		
+                        	}
+                        	else{
+                        		if(!$('span#remail').hasClass('glyphicon-ok'))
+                        			$('span#remail').addClass('glyphicon-ok');
+                        		if($('span#remail').hasClass('glyphicon-remove'))
+                        		  $('span#remail').removeClass('glyphicon-remove');
+                        	}
+                        }
+                    });
+				if($('span#remail').hasClass('glyphicon-ok')==true && $('span#rusername').hasClass('glyphicon-ok')==true){
+					
+				}
+				else{
+					
+				}
+			});
+
+		});
+	</script>
+</head>
+
+<body class="size-1140">
+        <!-- TOP NAV WITH LOGO -->  
+        <header>
+         <nav>
+          <div class="line">
+           <div class="top-nav">              
+            <div class="logo hide-l">
+             <a href="../">picard</a>
+             <a href="../">Home</a>
+           </div>                  
+           <div class="top-nav s-12 l-5">
+
+            <li><a href="../publicGallery.php">Gallery</a>
+
+            </div>
+            <ul class="s-12 l-2">
+             <li class="logo hide-s hide-m">
+              <a href="../index.php"><strong>picard</strong></a>
+            </li>
+          </ul>
+          <div class="top-nav s-12 l-5">
+           <ul class="right top-ul chevron">
+
+
+
+            <li><a href="../">Home</a>
+            </li>
+          </ul> 
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+<section>
+ <div id="head">
+  <div class="line">
+   <h1 id="clog">Login</h1>
+ </div>
+</div>
+
+<div class="content">
+
+    <div class="line">
+
+    <div class="margin">    
+<div class="center login btn-group pull-right">
+		<p>
+			<label>Email or Username:</label>
+			<input type="text" name="email" id="lemail" style=" width: 100%;padding: 10px 20px; margin: 8px 0; display: inline-block; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;" placeholder="Enter email or username..."/>
+		</p>
+		<p>
+			<label>Password:</label>
+			<input type="password" name="password" id="lpassword" placeholder="Enter password..."/>
+		</p>
+		<p>
+			<input type="submit" name="lsubmit" value="Login"/>
+			<p type="register">Not register? 
+			<span id="account" type="account">Create an account</span><br>
+			<!--<span id="forget" type="account"> Forgot your password?</span></p>-->
+
+		</p>
+	
+</div>
+
+    <div class="register center btn-group pull-right">
+			<form action="../php/registrationProcess.php" method="POST">
+		<p>
+			<div class="form-group has-success has-feedback">
+			<label>User Name:</label>
+			<input type="text" style=" width: 100%;padding: 10px 20px; margin: 8px 0; display: inline-block; border: 1px solid; border-radius: 4px; box-sizing: border-box;" name="ruser" class="form-control" id='user' required data-toggle="username" data-placement="top" title="Enter valid username" class="form-control" placeholder="Enter username..."/>
+			<span id="rusername" class="glyphicon glyphicon-remove form-control-feedback"></span>
+			</div>
+		</p>
+		<p>
+			<div class="form-group has-success has-feedback">
+			<label>Email:</label>
+			<input type="email" name="remail"  required data-toggle="email" data-placement="top" title="email address" class="form-control" placeholder="Enter email..."/>
+			<span id="remail" class="glyphicon glyphicon-remove form-control-feedback"></span>
+			</div>
+		</p>
+		<p>
+			<div class="form-group has-success has-feedback">
+			<label>Password:</label>
+			<input type="password" name="password" pattern=".{4,}"   required data-toggle="password" data-placement="top" title="atleast 4 characters" class="form-control" placeholder="Enter password..."/>
+		
+			</div>
+		</p>
+		<p>
+			<input type="submit" id="rsubmit" name="submit" style="display: block" value="Register"/>
+			<p type="register">Already register? 
+			<span id="login" type="account">Login</span><br>
+			</p>
+		</p>
+		</form>
+</div>
+
+<div class="forget center btn-group pull-right">
+
+		<p>
+			<label>Email:</label>
+			<input type="email" name="email" id="email" placeholder="Enter email.."/>
+		</p>
+		<p>
+			<button type="submit" name="submit" onclick="forgotPassCon()">Submit</button>
+			<p type="register"> <span id="flogin" type="account">Login</span></p>
+		</p>
+
+</div>
+</div>
+</div>
+</div>
+</section>
+</body>
+
+</html>
