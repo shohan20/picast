@@ -8,7 +8,7 @@ Picast is a photo sharing website where people can easily organize images and al
         <li class="list-group-item">delete and sharing facilities</li>
         <li class="list-group-item">photo download, zoom & Fullscreen</li>
         <li class="list-group-item">search public photos by user, caption or date</li>
-        <li class="list-group-item">social sharing</li>
+        <li class="list-group-item">sharing photos via different social media (Facebook, Twitter, Googleplus, Pinterest) </li>
         <li class="list-group-item">can load different images for different viewports and can display high resulation images</li>
         <li class="list-group-item">photo captions and locations are easily editable </li>
         <li class="list-group-item">personal and public gallery</li>
