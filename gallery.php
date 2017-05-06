@@ -43,8 +43,11 @@
 <script src="js/lg-share.js"></script>
 <script type="text/javascript"  src="dist/download.js"></script>
 <script type="text/javascript"  src="dist/download.js"></script>
+<script src="dist/sweetalert.min.js"></script>
+<link rel="stylesheet" type="text/css" href="dist/sweetalert.css">
+<script src="https://cdn.jsdelivr.net/places.js/1/places.min.js"></script>
       <!--[if lt IE 9]>
-	      <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
         <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
         <![endif]--> 
 
@@ -58,10 +61,13 @@
           $(document).ready(function(){
 
             var username= "<?php echo $_SESSION['username']; ?>"
+            ccancel();
          
                if(username!=""){
-                  var srlog= '<div class="dropdown"><button class="btn btn-primary dropdown-toggle" style="background-color: Transparent; border: none;" type="button" data-toggle="dropdown">'+username+"  "+'<span class="caret"></span></button><ul class="dropdown-menu"><li><a href="profilepage.php">Profile</a></li><li><a href="php/signout.php">Signout</a></li></ul></div>';
+                  var srlog= '<div class="dropdown"><button class="btn btn-primary dropdown-toggle" style="background-color: Transparent; border: none;" type="button" data-toggle="dropdown">'+username+"  "+'<span class="caret"></span></button><ul class="dropdown-menu"><li><a href="php/signout.php">Signout</a></li></ul></div>';
                   $('div#logg').html(srlog);
+                    var bari='<a class="navbar-brand" style="color: dodgerblue" href="#">My-Gallery</a><a class="navbar-brand" href="album.php">My-Whenhub-Album</a>';
+                  $('#navbari').append(bari);
                }
                else
                   window.location.replace("login/login.html");
@@ -82,6 +88,21 @@
                     });
               });
 
+             $.ajax({
+                  type: "POST",
+                  url: "php/countfollower.php",
+                  success: function(response){
+                      $('#bafollr').html(response);
+                  }
+                });
+
+            $.ajax({
+                  type: "POST",
+                  url: "php/countfollowing.php",
+                  success: function(response){
+                      $('#bafollg').html(response);
+                  }
+                });
             $(document).on("click","button[id='deletebutton']", function(event){
                 $(this).blur();
                     
@@ -93,24 +114,25 @@
 
                         }
                       });
-                  $('div.imag#'+$(this).val()).remove();
+                  $('#dl'+$(this).val()).remove();
 
             });
 
              $(document).on("click","button[id='submitbutton']", function(event){
                 $(this).blur();
                     $('textarea.form-control.'+$(this).val()).prop("readonly",true);
-
+                    $('#ad'+$(this).val()).prop("readonly",true);
+                    var tem=$('#ad'+$(this).val()).val();
                    $.ajax({
                         type: "POST",
                         url: "php/edit.php",
-                        data    : {name: $(this).attr('name'), result: $('textarea.form-control.'+$(this).val()).val()},
+                        data    : {name: $(this).attr('name'), result: $('textarea.form-control.'+$(this).val()).val(),location: tem},
                         success: function(response){
-                            
+                           
                         }
                       });
-                    document.getElementsByClassName('btn btn-default btn-sm '+"su "+$(this).val())[0].style.display='none';
-                              document.getElementsByClassName('btn btn-default btn-sm '+"ca "+$(this).val())[0].style.display = 'none';
+                    document.getElementsByClassName('btn btn-default btn-lg '+"su "+$(this).val())[0].style.display='none';
+                              document.getElementsByClassName('btn btn-default btn-lg '+"ca "+$(this).val())[0].style.display = 'none';
 
             });
 
@@ -118,6 +140,7 @@
        $(document).on("click","button[id='cancelbutton']", function(event){
                 $(this).blur();
                     $('textarea.form-control.'+$(this).val()).prop("readonly",true);
+                    $('#ad'+$(this).val()).prop("readonly",true);
                    var tem= $(this).val();
                    $.ajax({
                         type: "POST",
@@ -130,22 +153,70 @@
                                 if(flower['description']!=null){
 
                                   $('textarea.form-control.'+tem).val(flower['description']);
+                                  $('#ad'+$(this).val()).val(flower['location']);
                                 }
                                });
                         }
                       });
-                    document.getElementsByClassName('btn btn-default btn-sm '+"su "+$(this).val())[0].style.display='none';
-                              document.getElementsByClassName('btn btn-default btn-sm '+"ca "+$(this).val())[0].style.display = 'none';
+                    document.getElementsByClassName('btn btn-default btn-lg '+"su "+$(this).val())[0].style.display='none';
+                              document.getElementsByClassName('btn btn-default btn-lg '+"ca "+$(this).val())[0].style.display = 'none';
 
           });
 
              $(document).on("click","button[id='editbutton']", function(event){
                 $(this).blur();
                     $('textarea.form-control.'+$(this).val()).prop("readonly",false);
-                   document.getElementsByClassName('btn btn-default btn-sm '+"su "+$(this).val())[0].style.display='block';
-                   document.getElementsByClassName('btn btn-default btn-sm '+"ca "+$(this).val())[0].style.display = 'block';
+                    $('#ad'+$(this).val()).prop("readonly",false);
+                   document.getElementsByClassName('btn btn-default btn-lg '+"su "+$(this).val())[0].style.display='block';
+                   document.getElementsByClassName('btn btn-default btn-lg '+"ca "+$(this).val())[0].style.display = 'block';
 
             });
+
+               $(document).on("change","input[id='ima']", function(event){
+                
+                $(this).blur();
+                  var filedata=$(this).prop('files')[0];
+                   var file= $(this)[0].files[0].name.split('.').pop();
+
+                  var form_data= new FormData();
+                  form_data.append('file',filedata);
+                  $('div#pclear').html('<input type="file" style="display: none;">');
+                 // alert(form_data);
+                  $.ajax({
+                      type: "POST",
+                      url: "php/profileimage.php",
+                       contentType: false,
+                        cache: false,
+                        processData: false,
+                      //dataType:'JSON', 
+                      data: form_data,
+                      success: function(response){
+
+                      // put on console what server sent back...
+                       $("img#profileimg").attr("src","");
+                      // $("img#profileimg").animate({width: '300px',height: 'auto'});
+                      var sr="<?php echo $_SESSION['id'] ?>";
+                          $("img#profileimg").attr("src","user/"+sr+"."+file+"?t=" + new Date().getTime());
+                          
+                     }
+              });  
+            
+            });
+           
+            
+            
+           $.ajax({
+              type: "POST",
+              url: "php/iprofileimage.php",
+              //dataType:'JSON', 
+              success: function(response){
+                // put on console what server sent back...
+                
+                //$("img#profileimg").animate({width: '300px',height: 'auto'});
+                $("img#profileimg").attr("src",response+"?"+ new Date().getTime());
+
+           }
+         });
 
 
             $(document).on("change","select[id='sel1']", function(event){
@@ -160,7 +231,23 @@
                       });
 
             });
-
+            $(document).on("click","div[id='lid']", function(event){
+              var value=$(this).attr('name');
+              var ar = value.split(',');
+              
+              var srs="http://picast.azurewebsites.net/"+ar[0];
+              var  whencast1= "<?php echo $_SESSION['whencast']; ?>"
+                 $.ajax({
+                          type: "POST",
+                          async: false,
+                          cache: false,
+                          url: "https://api.whenhub.com/api/events/"+ar[1]+"/media?access_token="+whencast1,
+                          data: {type: "image", url: srs, name: ar[2]},
+                         success: function(response){
+                            swal("Successful!", "Your image is copied to "+ar[3]+" album ", "success")
+                         }
+          });
+            });
             $.ajax({
               type: "POST",
               url: "php/display.php",
@@ -172,7 +259,7 @@
                 
                  
                 var obj = JSON.parse(response);
-                
+                var i=0;
 
                $.each(obj,function(index,flower){
                     
@@ -187,15 +274,10 @@
                     var description=flower['description'];
                     storevalue=description;
                     var t=flower['time'];
-                    var time = t.split(' ');
+                    var tim=t.split(' ');
                     var first;
                     var second;
 
-                    var hourEnd = time[1].indexOf(":");
-                    var H = +time[1].substr(0, hourEnd);
-                      var h = H % 12 || 12;
-                  var ampm = H < 12 ? "AM" : "PM";
-                  time[1] = h + time[1].substr(hourEnd, 3) + ampm;
                     
                     if(priv=='1'){
                       first="<option value='1'>private</option>";
@@ -207,19 +289,51 @@
                     }
                  // console.log(ib);
                  var shareurl='<?php echo "https://picard.azurewebsites.net/share.php?link=" ?>'+"<?php echo '\''.urlencode(base64_encode($_SESSION['id'])).'\''?>"+"&value='"+sr+"'";
-                 var value='<div class="imag btn-group" id="'+rsr+'" style="background-color: white; padding-bottom=0;" ><div class="ima" data-googleplus-share-url="'+shareurl+'" data-facebook-share-url="'+shareurl+'" data-pinterest-share-url= data-pinterest-text= data-tweet-text="'+shareurl+'" data-pinterest-share-url="'+shareurl+'" data-src='+srs+' data-sub-html="<p> '+description+' </p>"><img class="full" src='+srs+'></div><div><span>'+time[0]+" "+time[1]+'(GMT)<span> </div><div class="btn-group"> <button id="downloadbutton" type="button" name="'+user+'"value="'+sr+'" class="btn btn-default btn-sm"><span class="  glyphicon glyphicon-download-alt"></span></button> <button id="deletebutton" type="deletebutton" name="'+sr+'" value="'+rsr+'" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-trash"></span> </button>'; 
 
-                 value+= '<button id="editbutton" type="button" value="'+rsr+'" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-pencil"></span></button>'; 
+                 var value="";
+                 if(i%3==2)
+                  value+='<div class="row">';
+                 value+='<div class=" col-md-4" id="dl'+rsr+'" style=" padding-bottom=0; margin-top: 2px" ><div class="ima" data-googleplus-share-url="'+shareurl+'" data-facebook-share-url="'+shareurl+'" data-pinterest-share-url= data-pinterest-text= data-tweet-text="'+shareurl+'" data-pinterest-share-url="'+shareurl+'" data-src='+srs+' data-sub-html="<p> '+description+' </p>"><img class="full" src='+srs+'></div><div class="well" style="margin-bottom: 0px" ><div><span>'+tim[0]+'<span> </div><div class="btn-group"> <button id="downloadbutton" type="button" name="'+user+'"value="'+sr+'" class="btn btn-default btn-lg"><span class="  glyphicon glyphicon-download-alt"></span></button> <button id="deletebutton" type="deletebutton" name="'+sr+'" value="'+rsr+'" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-trash"></span> </button>'; 
 
-                 value+= '<label for="sel1"></label><select style="font-size=10;" id="sel1" name='+sr+'>'+first+second+'</select></div> '; 
+                    value+= '<label for="sel1"></label><select style="font-size=10;" id="sel1" class="btn btn-default btn-lg" name='+sr+'>'+first+second+' </select> ';
+
+                    value+='<a class="dropdown"><button class="btn btn-default btn-lg dropdown-toggle" type="button" data-toggle="dropdown"><span class="glyphicon glyphicon-share"></span> <span class="caret"></span></button><ul class="dropdown-menu" id="dp'+rsr+'" ></ul></a>';
+                 value+= '<button id="editbutton" type="button" value="'+rsr+'" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-pencil"></span></button></div>';
+                
 
                  value+= '<div class="btn-form"> <label for="comment"> </label> <textarea readonly class="form-control '+rsr+'"id="comment" placeholder="Caption..." >'+description+'</textarea> ';
 
-                 value+='<div class="btn-group pull-right"> <button id="submitbutton" type="button" style="display: none;" name="'+sr+'" value="'+rsr+'" class="btn btn-default btn-sm '+"su "+rsr+'"><span class="glyphicon glyphicon-ok"></span></button> ';
+                 value+='<input type="search" readonly class="form-control" id="ad'+rsr+'" placeholder="Location..." />';
 
-                 value+= '<button id="cancelbutton" type="button" style="display: none;" name="'+sr+'" value="'+rsr+'" class="btn btn-default btn-sm '+"ca "+rsr+'"><span class="glyphicon glyphicon-remove"></span></button></div> </div></div>';
+                 value+='<div class="btn-group pull-right"> <button id="submitbutton" type="button" style="display: none;" name="'+sr+'" value="'+rsr+'" class="btn btn-default btn-lg '+"su "+rsr+'"><span class="glyphicon glyphicon-ok"></span></button> ';
+
+                 value+= '<button id="cancelbutton" type="button" style="display: none;" name="'+sr+'" value="'+rsr+'" class="btn btn-default btn-lg '+"ca "+rsr+'"><span class="glyphicon glyphicon-remove"></span></button></div> </div></div></div>';
+
+            if(i%3==2)
+                value+='</div>';
+              i=(i+1)%3;
 
                  $("#lightgallery").append(value);
+                 var placesAutocomplete = places({
+                    container: document.querySelector('#ad'+rsr)
+                  });
+
+                 $('#ad'+rsr).val(flower['location']);
+                 $.ajax({
+                  type: "POST",
+                  url: "php/getalbum.php",
+                  success: function(response){
+                    if(response!=null){
+                    var obj = JSON.parse(response);
+
+                     $.each(obj,function(index,flower){
+                        $('#dp'+rsr).append('<li><div id="lid" name="'+srs+','+flower['whenmodel']+','+description+','+flower['album_name']+'">'+flower['album_name']+'</div></li>');
+                      });
+                   }
+                 }
+
+                 });
+                 
                 
                  });
 
@@ -233,14 +347,61 @@
            }
 
          });
-
+         
         });
+        
+        function aboutedit(){
+         
+                    $('.aboutt').prop("readonly",false);
+                    $('#aboutb').css('display','none');
+                   $('#submitabutton').css('display','block');
+                 $('#cancelabutton').css('display','block');
+        }
+        function ccancel(){
+           $('.aboutt').prop("readonly",true);
+                   
+                   $.ajax({
+                        type: "POST",
+                        url: "php/acancel.php",
+                        
+                        success: function(response){
+                            
+                            var obj = JSON.parse(response);
+                               $.each(obj,function(index,flower){
+                                
 
+                                  $('.aboutt').val(flower['about']);
+                               
+                               });
+                        }
+                      });
+                    $('#aboutb').css('display','block');
+                   $('#submitabutton').css('display','none');
+                 $('#cancelabutton').css('display','none');
+                  
+        }
+        function asumbit(){
+         $('.aboutt').prop("readonly",true);
+                   $.ajax({
+                        type: "POST",
+                        url: "php/asubmit.php",
+                        data    : {name: $('.aboutt').val()},
+                        success: function(response){
+                            
+                        }
+                      });
+                   $('#aboutb').css('display','block');
+                   $('#submitabutton').css('display','none');
+                 $('#cancelabutton').css('display','none');
+                  
+        }
+         
         </script>
 
 
-        <link rel="stylesheet" type="text/css" href="css/upp.css" />
+        
         <link rel="stylesheet" type="text/css" href="dist/dropzone.css" />
+        <link rel="stylesheet" type="text/css" href="css/up3.css" />
         <script type="text/javascript" src="dist/dropzone.js"></script>
       </head>
   <body class="size-1140">
@@ -250,7 +411,7 @@
           <div class="line">
            <div class="top-nav">              
             <div class="logo hide-l">
-             <a href=".">PICARD</a>
+             <a href=".">PICAST</a>
              <div id="logg" > </div>
             </div> 
            <div class=" top-nav s-12 l-5">
@@ -260,7 +421,7 @@
             </div>
             <ul class=" s-12 l-2 ">
              <li class="logo hide-s hide-m">
-              <a href="."><strong>picard</strong></a>
+              <a href="."><strong>picast</strong></a>
             </li>
           </ul>
           <div class="top-nav s-12 l-5">
@@ -288,8 +449,10 @@
         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="publicGallery.php">Gallery</a>
-        <a class="navbar-brand" href="album.php">Album</a>
+       <div id="navbari">
+      <a class="navbar-brand" href="publicGallery.php">Gallery</a>
+       <a class="navbar-brand" href="publicalbum.php">Whenhub-Album</a>
+       </div>
       </div>
 
       <!-- Collect the nav links, forms, and other content for toggling -->
@@ -327,17 +490,35 @@
 
 <div style="margin-top:50px; ">
 
-<div class="content">
+<div class="container-fluid">
 
-    <div class="line">
+   <div class="col-sm-2" >
+      <div  style="padding: 0px">
+      <img id="profileimg" src="" style="padding: 0px" class="img-square img-thumbnail"  width="100%" height="auto">
+      <div class="well">
+      <?php echo $_SESSION['username']; ?>
+      <div ><textarea class="aboutt" readonly placeholder="About me..." ></textarea> 
+       <button id="aboutb" style="display: block" type="button" onclick="aboutedit()" class="btn btn-default btn-lg pull-right"><span class="glyphicon glyphicon-pencil"></span></button>
 
-    <div class="margin">
+      <div class="btn-group pull-right"> <button onclick="asumbit()" id="submitabutton" type="button" style="display: none;" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-ok"></span></button> 
+
+      <button id="cancelabutton" type="button" onclick="ccancel()" style="display: none;" class="btn btn-default btn-lg "><span class="glyphicon glyphicon-remove"></span></button></div> </div>
+      </div>
+      </div>
 
    
-    <div id="lightgallery" class="btn-group">
+     <label class="btn btn-default btn-file btn-lg">
+    Change Photo <div id="pclear"> <input type="file" id="ima" style="display: none;"> </div>
+    </label>
+    
+    
+      <button id="editbutton" type="button" style="" name="" value="" class="btn btn-default btn-lg">Change Password </button>
+      <a id="followerbutton" href="follower.php" class="btn btn-default btn-lg">Follower <span id="bafollr" class="badge"></span></a>
+      <a id="followingbutton" href="following.php" class="btn btn-default btn-lg">Following <span id="bafollg" class="badge"></span> </a>
+    
+    </div>
+    <div id="lightgallery" class="col-sm-9 col-sm-offset-1">
 
-    </div>
-    </div>
     </div>
     </div>
     </div>

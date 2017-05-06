@@ -14,7 +14,9 @@
 		$_SESSION['id']=$row['id'];
 		$_SESSION['email']=$row['email'];
 		$_SESSION['username']=$row['username'];
-		
+		$_SESSION['whencast']=$row['whencast'];
+		$_SESSION['cast_id']=$row['cast_id'];
+		$_SESSION['about']=$row['about'];
 	}
 	else
 		echo "Failed to login";

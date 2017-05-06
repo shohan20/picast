@@ -1,5 +1,7 @@
 <?php
+  session_start();
     include 'serverConnection.php'; 
+    $userid=$_POST['id'];
 function findimage($myfile,$userid,$image_i){
     foreach(glob("../upload/".$userid."/".$image_i.".*") as $filename){
 
@@ -12,34 +14,19 @@ function findimage($myfile,$userid,$image_i){
      }
      return "false";
 }
-
-function finduimg($uimag){
-       foreach(glob("../user/".$uimag.".*") as $filenamei){
-
-                 $supported_file = array( 'gif','jpg','jpeg','png');
-                 $ext = strtolower(pathinfo($filenamei, PATHINFO_EXTENSION));
-                if (in_array($ext, $supported_file)) {
-                    return basename($filenamei);
-                 }
-            
-     }
-     return "false";
-}
    
 
     $connection=serverConnect();
     //$connection= mysqli_connect("localhost", "root", "abcd");
     mysqli_select_db($connection,"login");
     $found=array();
-    $result = mysqli_query($connection, "SELECT uploads.user_id,uploads.image_id,uploads.privacy,uploads.description, uploads.time ,users.username,users.email,uploads.location FROM uploads inner JOIN users ON (users.id=uploads.user_id) and uploads.privacy=2 ORDER BY uploads.time DESC;");
+    $result = mysqli_query($connection, "SELECT * FROM uploads where user_id='$userid' and privacy='2' ORDER BY time DESC;");
     if (mysqli_num_rows($result) > 0) {
     // output data of each row     
      while($row = mysqli_fetch_assoc($result)) {
-            $image=findimage("../upload/".$row['user_id']."/".$row['image_id'],$row['user_id'],$row['image_id']);
-            $uimage=finduimg($row['user_id']);
+            $image=findimage("../upload/".$userid."/".$row['image_id'],$userid,$row['image_id']);
            if($image!=="false"){
                 $row['image_id']=$image;
-                $row['email']=$uimage;
                $found[]=$row;
            }
         }

@@ -31,7 +31,7 @@ function finduimg($uimag){
     //$connection= mysqli_connect("localhost", "root", "abcd");
     mysqli_select_db($connection,"login");
     $found=array();
-    $result = mysqli_query($connection, "SELECT uploads.user_id,uploads.image_id,uploads.privacy,uploads.description, uploads.time ,users.username,users.email FROM uploads inner JOIN users ON (users.id=uploads.user_id) and uploads.privacy=2 and (uploads.description LIKE '%$keyword%' OR users.username LIKE '%$keyword%' OR uploads.time LIKE '%$keyword%') ORDER BY uploads.time DESC;");
+    $result = mysqli_query($connection, "SELECT uploads.user_id,uploads.image_id,uploads.privacy,uploads.description, uploads.time ,users.username,users.email, uploads.location FROM uploads inner JOIN users ON (users.id=uploads.user_id) and uploads.privacy=2 and (uploads.description LIKE '%$keyword%' OR users.username LIKE '%$keyword%' OR uploads.time LIKE '%$keyword%' OR uploads.location LIKE '%$keyword%') ORDER BY uploads.time DESC;");
     if (mysqli_num_rows($result) > 0) {
     // output data of each row     
      while($row = mysqli_fetch_assoc($result)) {

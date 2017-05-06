@@ -8,12 +8,18 @@ include 'serverConnection.php';
 		$file_error = $_FILES['file']['error'];
 		$file_ext=explode('.', $file_name);
 		$file_ext=strtolower(end($file_ext));
+		$whenmodel=$_POST['whenmodel'];
 		$check = getimagesize($file_tmp);
     	if($check !== false && $file_error==0) {
-    		$targetDir="../upload/";
+    		?>
+    		<script type="text/javascript">
+    			
+    		</script>
+    		<?
+    		$targetDir="../whentmp/";
     				$connection=serverConnect();
 					mysqli_select_db($connection,"login");
-					$result = mysqli_query($connection,"insert into uploads(user_id,privacy,description,whentmp,whenmodel,location) values('".$_SESSION['id']."','1','','','','');") or die("Failed to query database ".mysqli_error($connection));
+					$result = mysqli_query($connection,"insert into uploads(user_id,privacy,description,whentmp,whenmodel,location) values('".$_SESSION['id']."','1','','1','$whenmodel','');") or die("Failed to query database ".mysqli_error($connection));
 
 					$resul = mysqli_query($connection,"SELECT LAST_INSERT_ID();") or die("Failed to query database ".mysqli_error($connection));
 					$row =mysqli_fetch_array($resul);

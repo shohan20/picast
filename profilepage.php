@@ -90,7 +90,7 @@
                 $(this).blur();
                   var filedata=$(this).prop('files')[0];
                    var file= $(this)[0].files[0].name.split('.').pop();
-
+                   
                   var form_data= new FormData();
                   form_data.append('file',filedata);
                   $('div#pclear').html('<input type="file" style="display: none;">');
