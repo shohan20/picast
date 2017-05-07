@@ -3,7 +3,7 @@
 <head>
  <meta charset="UTF-8">
  <meta name="viewport" content="width=device-width" />
- <title>Picard-Gallery</title>
+ <title>Picast-Following</title>
  <meta name="viewport" content="width=device-width, initial-scale=1">
  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
  <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.1.1.min.js"></script>
@@ -111,7 +111,7 @@
                    
                  // console.log(ib);
                  var value="";
-                 if(i%3==2)
+                 //if(i%3==2)
                   value+='<div class="row">';
                  value +='<div class="imag col-md-3" style="background-color: white; margin: 5px; "><img id="uid" class=" img-thumbnail" src='+usrs+'><div class="well"><div class=well> '+username;  
                  if(about.match(/\S/)){
@@ -119,7 +119,7 @@
                }
 
                value+='</div><a class="btn btn-default btn-lg" href="followphoto.php?id='+user_id+'">Photo <span id="baphoto'+user_id+'" class="badge"></span></a><br><a class="btn btn-default btn-lg" href="followalbum.php?id='+user_id+'">Album <span id="baalbum'+user_id+'" class="badge"></span></a></div></div>';
-               if(i%3==2)
+              // if(i%3==2)
                 value+='</div>';
               i=(i+1)%3;
                  $("#light").append(value);

@@ -2,7 +2,7 @@
 <!DOCTYPE html >
 <html lang="en-US">
 <head>
-  <title>Picard-Profile</title>
+  <title>Picast-Profile</title>
   <meta charset="UTF-8">
  
   <?php session_start();?>

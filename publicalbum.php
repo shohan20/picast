@@ -4,7 +4,7 @@
  <?php session_start(); ?>
  <meta charset="UTF-8">
  <meta name="viewport" content="width=device-width" />
- <title>Picard-Gallery</title>
+ <title>Picast-Album</title>
  <meta name="viewport" content="width=device-width, initial-scale=1">
  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
  <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.1.1.min.js"></script>
@@ -140,7 +140,7 @@
                  value+= '<div>'+description+' </div>';
                }
             
-                 if(local.match(/\S/)){
+              if(local.match(/\S/)){
                  value+= '<div class="glyphicon glyphicon-map-marker">'+local+' </div>';
                }
                value+='</div></div>';

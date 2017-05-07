@@ -7,7 +7,7 @@
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-      <title>Picard</title>
+      <title>Picast</title>
       <link rel="stylesheet" href="css/components.css">
       <link rel="stylesheet" href="css/responsee.css">
       <link rel="stylesheet" href="owl-carousel/owl.carousel.css">
@@ -58,7 +58,7 @@ footer > p {
          var username= "<?php echo $_SESSION['username']; ?>"
          
                if(username!=""){
-                  var srlog= '<div class="dropdown"><button class="btn btn-primary dropdown-toggle" style="background-color: Transparent; border: none;" type="button" data-toggle="dropdown">'+username+"  "+'<span class="caret"></span></button><ul class="dropdown-menu"><li><a href="profilepage.php">Profile</a></li><li><a href="gallery.php">My Gallery</a></li><li><a href="php/signout.php">Signout</a></li></ul></div>';
+                  var srlog= '<div class="dropdown"><button class="btn btn-primary dropdown-toggle" style="background-color: Transparent; border: none;" type="button" data-toggle="dropdown">'+username+"  "+'<span class="caret"></span></button><ul class="dropdown-menu"><li><a href="gallery.php">My Gallery</a></li><li><li><a href="album.php">My Whenhub-Album</a></li><a href="php/signout.php">Signout</a></li></ul></div>';
                   $('div#logg').html(srlog);
                }
                else
@@ -77,19 +77,19 @@ footer > p {
             <div class="line">
                <div class="top-nav">              
                   <div class="logo hide-l">
-                     <a href="#">picard</a>
+                     <a href="#">picast</a>
                      <div id="logg" > </div>
                   </div>                  
                   
                   <div class="top-nav s-12 l-5">
                      
                         <li><a href="publicGallery.php">Gallery</a>
-                       
+                       <li><a href="publicalbum.php">Whenhub-Album</a>
                      
                   </div>
                   <ul class="s-12 l-2">
                      <li class="logo hide-s hide-m">
-                        <a href="#"><strong>picard<strong></a>
+                        <a href="#"><strong>picast<strong></a>
                      </li>
                   </ul>
                   <div class="top-nav s-12 l-5 ">
@@ -133,7 +133,7 @@ footer > p {
         </div>
       </div>
       <footer id="footer" style="position: fixed; bottom: 0px; left: 0px; right: 0px;">
-        <p class="h4 s-12 l-5 text-muted"> &#169; Cauliflower, 2017 </p> 
+        <p class="h4 s-12 l-5 text-muted"> &#169; Shorifuzzaman, 2017 </p> 
         <a class="h4 s-12 l-5 text-muted " style="text-align: right; color: white;" href="about.php">About</a>
         
       </footer>

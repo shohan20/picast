@@ -4,7 +4,7 @@
  <?php session_start(); ?>
  <meta charset="UTF-8">
  <meta name="viewport" content="width=device-width" />
- <title>Picard-Gallery</title>
+ <title>Picast-Gallery</title>
  <meta name="viewport" content="width=device-width, initial-scale=1">
  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
  <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.1.1.min.js"></script>
@@ -288,7 +288,7 @@
                         second="<option value='1'>private</option>";
                     }
                  // console.log(ib);
-                 var shareurl='<?php echo "https://picard.azurewebsites.net/share.php?link=" ?>'+"<?php echo '\''.urlencode(base64_encode($_SESSION['id'])).'\''?>"+"&value='"+sr+"'";
+                 var shareurl='<?php echo "https://picast.azurewebsites.net/share.php?link=" ?>'+"<?php echo '\''.urlencode(base64_encode($_SESSION['id'])).'\''?>"+"&value='"+sr+"'";
 
                  var value="";
                  if(i%3==2)

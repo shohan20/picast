@@ -4,7 +4,7 @@
  <?php session_start(); ?>
  <meta charset="UTF-8">
  <meta name="viewport" content="width=device-width" />
- <title>Picard-Gallery</title>
+ <title>Picast-Gallery</title>
  <meta name="viewport" content="width=device-width, initial-scale=1">
  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
  <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.1.1.min.js"></script>
@@ -155,7 +155,7 @@
                     
                     
                  // console.log(ib);
-                 var shareurl='<?php echo "https://picard.azurewebsites.net/share.php?link=" ?>'+"<?php echo '\''.urlencode(base64_encode($_GET['id'])).'\''?>"+"&value='"+sr+"'";
+                 var shareurl='<?php echo "https://picast.azurewebsites.net/share.php?link=" ?>'+"<?php echo '\''.urlencode(base64_encode($_GET['id'])).'\''?>"+"&value='"+sr+"'";
 
                  var value="";
                  if(i%3==2)
@@ -166,7 +166,7 @@
                }
 
                if(locate.match(/\S/)){
-                value+= '<div class="glyphicon glyphicon-map-marker" id="ad'+rsr+'">'+location+'</div> ';
+                value+= '<div class="glyphicon glyphicon-map-marker" id="ad'+rsr+'">'+locate+'</div> ';
                }
 
                  value+= '</div></div>';
@@ -274,7 +274,7 @@
           <div class="line">
            <div class="top-nav">              
             <div class="logo hide-l">
-             <a href=".">PICARD</a>
+             <a href=".">PICAST</a>
              <div id="logg" > </div>
             </div> 
            <div class=" top-nav s-12 l-5">
@@ -284,7 +284,7 @@
             </div>
             <ul class=" s-12 l-2 ">
              <li class="logo hide-s hide-m">
-              <a href="."><strong>picard</strong></a>
+              <a href="."><strong>picast</strong></a>
             </li>
           </ul>
           <div class="top-nav s-12 l-5">

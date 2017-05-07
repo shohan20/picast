@@ -2,7 +2,7 @@
 <!DOCTYPE html >
 <html lang="en-US">
 <head>
-  <title>Picard-About</title>
+  <title>Picast-Album</title>
   <meta charset="UTF-8">
  
   <?php session_start(); ?>
@@ -54,7 +54,7 @@
           <div class="line">
            <div class="top-nav">              
             <div class="logo hide-l">
-             <a href="index.php">PICARD</a>
+             <a href="index.php">PICAST</a>
               <div id="logg" > </div> 
            </div>                  
            
@@ -65,7 +65,7 @@
             </div>
             <ul class="s-12 l-2">
              <li class="logo hide-s hide-m">
-              <a href="index.php"><strong>picard</strong></a>
+              <a href="index.php"><strong>picast</strong></a>
             </li>
           </ul>
           <div class="top-nav s-12 l-5">
@@ -94,6 +94,12 @@
     <div class="margin">
     <div class="jumbotron" style="padding: 10%">
         <div class="well">
+        <center><h3><strong> Picast: </strong></h3></center>
+        <div class="list-group-item">
+          Picast is a photosharing website where people can easily share their photos and albums. Picast uses whenhub api to organize albums. Complete documentation is provided in <a style="color: dodgerblue" href="https://github.com/shohan20/picast">here</a>
+        </div>
+        </div>
+        <div class="well">
         <center><h3><strong> About me: </strong></h3></center>
         <div class="list-group-item">
         Md. Shorifuzzaman (Shohan)<br>
@@ -106,7 +112,6 @@
         <center> <h3><strong> Features: </strong></h3>
         </center>
         <ul class="list-group">
-        <li class="list-group-item">responsive in both mobile and pc</li>
         <li class="list-group-item">personal user account</li>
         <li class="list-group-item">user friendly interface</li>
         <li class="list-group-item">upload multiple photos at a time</li>
@@ -115,36 +120,32 @@
         <li class="list-group-item">search public photos by user, caption or date</li>
         <li class="list-group-item">social sharing</li>
         <li class="list-group-item">it can load different images for different viewports and can display high resulation images</li>
-        <li class="list-group-item">photo captions are easily editable </li>
+        <li class="list-group-item">photo captions and locations are easily editable </li>
         <li class="list-group-item">personal and public gallery</li>
+        <li class="list-group-item">use of whenhub to create and organize album</li>
+        <li class="list-group-item">whenhub users can organize thier albums through picast</li>
+        <li class="list-group-item">Follow other users' album and photo</li>
         </div>
         </ul>
         <div class="well">
         <center><h3><strong> Limitations: </strong></h3></center>
         <ul class="list-group">
         <li class="list-group-item">due to limited time and academic examinations, couldn't be able to add some more cool features. </li>
-        <li class="list-group-item"> failed to use email service due to azure's student account </li>
         </ul>
         </div>
-        <div class="well">
-        <center> <h3><strong> Achievements: </strong></h3></center>
-        <div class="list-group-item">
-        It is my first web app. I appreciate Azure and "2017 Hello Cloud Challenge" for inspiring me to learn html, php, javascript, css, bootsramp, jquery etc for developing this project.
-        </div>
-        </div>
+        
         <div class="well">
         <center> <h3><strong> Next Plan: </strong></h3></center>
         <ul class="list-group">
         <li class="list-group-item"> image searching using machine learning </li>
         <li class="list-group-item"> image processing and photo editor</li>
-        <li class="list-group-item"> more user friendly interface (album, collage, animation etc)</li>
+        <li class="list-group-item"> more user friendly interface (collage, animation etc)</li>
         <li class="list-group-item"> more socializable </li>
         </ul>
         </div>
         <div class="well">
         <center><h3><strong> Special thanks to: </strong></h3></center>
-        <ul class="list-group">
-        <li class="list-group-item"> Rfl, Ruhit, Roshu Kha, Shafu </li> 
+        <ul class="list-group"> 
         <li class="list-group-item"> http://t4t5.github.io/sweetalert/ </li>
         <li class="list-group-item"> vision design - graphic zoo </li>
         <li class="list-group-item"> https://github.com/sachinchoolur/lightgallery.js/ </li>
@@ -155,6 +156,7 @@
         <div class="list-group-item">
         Any recommendation is appreciated...<br>
         Email: <a href="mailto:shohan.jess@gmail.com">shohan.jess@gmail.com</a>
+        <br>github: https://github.com/shohan20
         </div>
         </div>
     </div>
