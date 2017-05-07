@@ -44,6 +44,7 @@ Picast will help people to share and whencast their dreams and memories. And aft
 
 # What's next for Picast
 <ul>
+<li> transfer photos and albums into inter-schedules in whenhub</li>
 <li>image searching using machine learning</li>
 <li>image processing </li>
 <li>more user friendly interface (collage, animation etc)</li>
