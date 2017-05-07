@@ -22,7 +22,8 @@ Picast is a photo sharing website where people can easily organize images and al
 # Prerequisites
 <ul class="list-group">
         <li class="list-group-item">you have to open an account for organizing your photos</li>
-        <li class="list-group-item">A whenhub access token is needed to create and organize your whenhub albums </li></ul>
+        <li class="list-group-item">A whenhub access token is needed to create and organize your whenhub albums </li> </ul>
+    
 # How I built it
 I have used php, javascript, bootstrap, jquery, mysql, ajax and some opensource libraries to develop this application. Whenhub API has been used to create, delete, upload and organize users' albums and photos. Picast ask user "whenhub access token" for creating a schedule named Picast-Albums.  Users can create multiple albums(events) in that created schedule of whenhub and can add photos(media in whenhub events)  to their albums. Picast is made user friendly. Update, delete, edit and sharing facilities have been included along with the options of following other users' photos and albums.     
 
