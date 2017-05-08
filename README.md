@@ -1,5 +1,5 @@
 # Picast
-Picast is a photo sharing website where people can easily organize images and albums. Whenhub api has been used so that people can easily organize and cast their albums in whencast.
+Picast is a photo sharing website where people can easily organize images and albums. Whenhub api is used so that people can easily organize and cast their albums in whencast.
 # Features
 <ul >
         <li >personal user account</li>
@@ -11,7 +11,7 @@ Picast is a photo sharing website where people can easily organize images and al
         <li >share photos via different social media (Facebook, Twitter, Googleplus, Pinterest) </li>
         <li >can load different images for different viewports and can display high resulation images</li>
         <li >photo captions and locations are easily editable </li>
-        <li >personal and public for both gallery and album interface</li>
+        <li >personal and public interfaces for both gallery and album</li>
         <li >use of whenhub api to create and organize whenhub-album</li>
         <li >whenhub users can easily organize their albums through picast</li>
         <li >whenhub-albums can be shared, deleted and organized via picast</li>
@@ -37,10 +37,10 @@ I have used php, javascript, bootstrap, jquery, mysql, ajax and some opensource 
 <li><strong>Schedules with events and media:</strong>  get the albums' and photos' info </li></ul>   
 
 # Challenges I ran into
-At first I have faced some problems in implementing whenhub API. I am very thankful that "Whenhub Support"  has helped me to solve those problems. Picast is one of my first web-app. So, I had to learn different web languages and their formats from the beginner level. And due to limited time I couldn't implement some more features.
+At first I have faced some problems in implementing whenhub API. I am very thankful that "Whenhub Support"  has helped me to solve those problems. Picast is one of my first web-apps. So, I had to learn different web languages and their formats from the beginner level. And due to limited time I couldn't implement some more features.
 
 # Accomplishments that I'm proud of
-Picast will help people to share and whencast their dreams and memories. And after a long time they will cherished with their preserved albums in the picast.
+Picast will help people to share and whencast their dreams and memories. And after a long time they will be cherished with their preserved albums in the picast.
 
 # What I learned
 <ul >
@@ -49,7 +49,7 @@ Picast will help people to share and whencast their dreams and memories. And aft
         <li>ajax</li>
         <li >javascript</li>
  <li >jquery</li>
- <li >whenhub api</li></ul>
+ <li >whenhub API</li></ul>
 
 # What's next for Picast
 <ul>
