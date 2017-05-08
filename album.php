@@ -72,7 +72,7 @@
                           if(response<=0){
                             swal({
                                       title: "Access_token of Whencast!",
-                                      text: '<a href="#" style="color: blue">How to get whencast access_token?</a>',
+                                      text: '<a href="https://developer.whenhub.com/v1.0/docs/connecting-to-the-api" style="color: blue">How to get whencast access_token?</a>',
                                       type: "input",
                                       showCancelButton: true,
                                       closeOnConfirm: false,
